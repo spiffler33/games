@@ -50,9 +50,10 @@ def render(size):
             # background: radial-ish purple gradient
             d = math.hypot(u - 0.5, v - 0.35)
             t = min(d / 0.85, 1.0)
-            r = lerp(0x6d, 0x21, t)
-            g = lerp(0x28, 0x10, t)
-            b = lerp(0xd9, 0x4f, t)
+            # warm sunburst: mustard center -> tomato red edges
+            r = lerp(0xf8, 0xd4, t)
+            g = lerp(0xc4, 0x4a, t)
+            b = lerp(0x3a, 0x24, t)
 
             # pin
             pt = (v - pin_top) / pin_h
@@ -63,10 +64,10 @@ def render(size):
                     shade = 1.0 - 0.45 * (dx / pr) ** 2
                     if (u - pin_cx) < -pr * 0.3:
                         shade *= 0.92
-                    if 0.30 < pt < 0.36 or 0.40 < pt < 0.46:  # red stripes
-                        r, g, b = 0xef * shade, 0x44 * shade, 0x44 * shade
+                    if 0.30 < pt < 0.36 or 0.40 < pt < 0.46:  # ink stripes
+                        r, g, b = 0x24 * shade, 0x1c * shade, 0x12 * shade
                     else:
-                        r, g, b = 0xff * shade, 0xff * shade, 0xf2 * shade
+                        r, g, b = 0xff * shade, 0xfb * shade, 0xee * shade
 
             # ball (drawn over pin)
             bd = math.hypot(u - ball_cx, v - ball_cy)
@@ -74,13 +75,14 @@ def render(size):
                 hx, hy = (u - (ball_cx - 0.09)) / ball_r, (v - (ball_cy - 0.10)) / ball_r
                 hl = max(0.0, 1.0 - math.hypot(hx, hy))
                 shade = 0.55 + 0.45 * (1.0 - (bd / ball_r) ** 2)
-                r = min(255, lerp(0xea, 0xff, hl * 0.9) * shade + 60 * hl)
-                g = lerp(0x58, 0xc8, hl) * shade
-                b = lerp(0x0c, 0x9a, hl) * shade
+                # ink-dark ball with warm highlight
+                r = min(255, lerp(0x2e, 0x9a, hl) * shade + 40 * hl)
+                g = min(255, lerp(0x24, 0x86, hl) * shade + 30 * hl)
+                b = min(255, lerp(0x1a, 0x6e, hl) * shade + 25 * hl)
                 # finger holes
                 for ox, oy in ((-0.05, -0.07), (0.05, -0.09), (0.0, -0.16)):
                     if math.hypot(u - (ball_cx + ox), v - (ball_cy + oy)) < 0.028:
-                        r, g, b = r * 0.3, g * 0.3, b * 0.3
+                        r, g, b = r * 0.35 + 12, g * 0.35 + 10, b * 0.35 + 8
 
             i = (y * s + x) * 3
             img[i], img[i + 1], img[i + 2] = int(r), int(g), int(b)

@@ -417,7 +417,7 @@ function spawnConfetti(n) {
       x: rand(0, W), y: rand(-60, -10),
       vx: rand(-40, 40), vy: rand(120, 320),
       w: rand(5, 10), h: rand(8, 16), rot: rand(0, 6.3), vr: rand(-6, 6),
-      color: pick(['#fb923c', '#a78bfa', '#34d399', '#f472b6', '#fcd34d', '#60a5fa']),
+      color: pick(['#e4572e', '#f5b82e', '#1e91a8', '#2bc4d9', '#faf1e3', '#d94f70']),
       life: rand(2, 3.6),
     });
   }
@@ -443,7 +443,7 @@ function endOfThrow() {
     say(pick(['STRIKE! Amazing!', 'BOOM! Strike!', 'Incredible! Strike!', 'Wow! Strike!']));
     if (navigator.vibrate) try { navigator.vibrate([60, 40, 60]); } catch (e) {}
   } else if (isSpare) {
-    showBanner('SPARE! ⭐', pick(['NICE PICKUP!', 'CLEANED UP!', 'GREAT JOB!']), '#a78bfa');
+    showBanner('SPARE! ⭐', pick(['NICE PICKUP!', 'CLEANED UP!', 'GREAT JOB!']), '#2bc4d9');
     FX.fanfare(false); spawnConfetti(60);
     say(pick(['Spare! Nice one!', 'You got the spare!', 'Spare! Great job!']));
   } else if (G.ball && G.ball.gutter && thisThrow === 0) {
@@ -548,17 +548,17 @@ function proj(x, y) {
 function drawLane() {
   // backdrop
   const bg = cx2d.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, '#0d0726'); bg.addColorStop(0.4, '#231356'); bg.addColorStop(1, '#180e3d');
+  bg.addColorStop(0, '#100c07'); bg.addColorStop(0.4, '#2b2114'); bg.addColorStop(1, '#1c1610');
   cx2d.fillStyle = bg; cx2d.fillRect(0, 0, W, H);
 
   const bl = proj(-0.5, 0), br = proj(0.5, 0), tl = proj(-0.5, LEN), tr = proj(0.5, LEN);
   // gutters / bumpers
   const gl = proj(-0.62, 0), gr = proj(0.62, 0), gtl = proj(-0.62, LEN), gtr = proj(0.62, LEN);
-  cx2d.fillStyle = G.bumpers ? '#3b2a7a' : '#0a0618';
+  cx2d.fillStyle = G.bumpers ? '#11444d' : '#0d0a06';
   cx2d.beginPath(); cx2d.moveTo(gl.x, gl.y); cx2d.lineTo(bl.x, bl.y); cx2d.lineTo(tl.x, tl.y); cx2d.lineTo(gtl.x, gtl.y); cx2d.closePath(); cx2d.fill();
   cx2d.beginPath(); cx2d.moveTo(gr.x, gr.y); cx2d.lineTo(br.x, br.y); cx2d.lineTo(tr.x, tr.y); cx2d.lineTo(gtr.x, gtr.y); cx2d.closePath(); cx2d.fill();
   if (G.bumpers) {
-    cx2d.strokeStyle = '#a78bfa'; cx2d.lineWidth = 3; cx2d.shadowColor = '#a78bfa'; cx2d.shadowBlur = 10;
+    cx2d.strokeStyle = '#2bc4d9'; cx2d.lineWidth = 3; cx2d.shadowColor = '#2bc4d9'; cx2d.shadowBlur = 10;
     cx2d.beginPath(); cx2d.moveTo(bl.x, bl.y); cx2d.lineTo(tl.x, tl.y); cx2d.stroke();
     cx2d.beginPath(); cx2d.moveTo(br.x, br.y); cx2d.lineTo(tr.x, tr.y); cx2d.stroke();
     cx2d.shadowBlur = 0;
@@ -579,7 +579,7 @@ function drawLane() {
   }
 
   // arrows
-  cx2d.fillStyle = '#7c3aed55';
+  cx2d.fillStyle = '#e4572e55';
   for (let i = -3; i <= 3; i++) {
     const pos = proj(i * 0.125, 1.1 + Math.abs(i) * 0.12);
     const s = 7 * pos.s;

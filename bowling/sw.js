@@ -1,4 +1,4 @@
-const CACHE = 'bowling-v1';
+const CACHE = 'bowling-v2';
 const ASSETS = ['./', 'index.html', 'game.js', 'manifest.webmanifest', 'icon-180.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {

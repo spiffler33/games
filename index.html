@@ -3,50 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Our Game Arcade 🕹️</title>
+<title>The Game Arcade</title>
 <meta name="description" content="Games we made together">
-<meta name="theme-color" content="#1a103c">
+<meta name="theme-color" content="#FAF1E3">
 <link rel="icon" href="bowling/icon-180.png">
 <link rel="apple-touch-icon" href="bowling/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --ink:#241c12; --paper:#faf1e3; --red:#e4572e; --mustard:#f5b82e; --teal:#1e91a8;
+  }
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html, body { min-height:100%; }
   body {
-    font-family: ui-rounded, -apple-system, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
-    background: radial-gradient(120% 90% at 50% 0%, #3b2a7a 0%, #1a103c 60%, #120a2c 100%);
-    color:#fff; display:flex; flex-direction:column; align-items:center;
-    padding:max(40px, env(safe-area-inset-top)) 20px 40px; gap:26px;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background-color:var(--paper);
+    background-image:radial-gradient(#e3d4b4 1.2px, transparent 1.3px);
+    background-size:24px 24px;
+    color:var(--ink);
+    display:flex; flex-direction:column; align-items:center;
+    padding:max(44px, env(safe-area-inset-top)) 20px 48px;
   }
-  h1 { font-size:clamp(32px, 9vw, 48px); text-align:center; text-shadow:0 4px 0 #0006; }
-  .sub { color:#bdb3e6; font-weight:600; text-align:center; }
-  .games { display:flex; flex-direction:column; gap:18px; width:min(420px, 100%); }
+  header { text-align:center; margin-bottom:34px; }
+  .overline {
+    display:inline-block; font-weight:800; font-size:12px; letter-spacing:3px;
+    color:var(--paper); background:var(--ink); padding:6px 14px; border-radius:999px;
+    transform:rotate(-1.5deg); margin-bottom:16px;
+  }
+  h1 {
+    font-family:'Titan One', -apple-system, sans-serif; font-weight:400;
+    font-size:clamp(44px, 13vw, 64px); line-height:.95; letter-spacing:1px;
+    color:var(--ink); text-shadow:4px 4px 0 var(--mustard);
+  }
+  h1 .accent { color:var(--red); }
+  .stickers { margin-top:14px; font-size:30px; letter-spacing:8px; }
+  .stickers span { display:inline-block; }
+  .stickers span:nth-child(1) { transform:rotate(-10deg); }
+  .stickers span:nth-child(2) { transform:rotate(6deg) translateY(-4px); }
+  .stickers span:nth-child(3) { transform:rotate(-4deg); }
+
+  main { width:min(440px, 100%); display:flex; flex-direction:column; gap:24px; }
+
   a.game {
-    display:flex; align-items:center; gap:16px; text-decoration:none; color:#fff;
-    background:#ffffff14; border:1px solid #ffffff22; border-radius:22px; padding:16px;
-    box-shadow:0 8px 24px #0006; transition:transform .1s;
+    display:block; text-decoration:none; color:var(--ink);
+    background:#fff; border:3px solid var(--ink); border-radius:20px;
+    box-shadow:8px 8px 0 var(--ink); padding:18px;
+    transform:rotate(-.6deg);
+    transition:transform .08s, box-shadow .08s;
   }
-  a.game:active { transform:scale(.97); }
-  a.game img { width:72px; height:72px; border-radius:18px; }
-  a.game .info h2 { font-size:22px; }
-  a.game .info p { color:#bdb3e6; font-size:14px; font-weight:600; margin-top:2px; }
-  a.game .go { margin-left:auto; font-size:26px; }
-  .soon { opacity:.55; text-align:center; font-weight:700; color:#bdb3e6;
-          border:2px dashed #ffffff33; border-radius:22px; padding:18px; width:min(420px,100%); }
+  a.game:active { transform:rotate(-.6deg) translate(5px,5px); box-shadow:3px 3px 0 var(--ink); }
+  .gameTop { display:flex; gap:16px; align-items:center; }
+  .gameTop img {
+    width:84px; height:84px; border-radius:18px; border:3px solid var(--ink);
+    transform:rotate(2deg); flex-shrink:0;
+  }
+  .gameTop h2 { font-family:'Titan One', sans-serif; font-weight:400; font-size:26px; letter-spacing:.5px; }
+  .gameTop p { font-weight:600; font-size:14px; color:#7a6e5c; margin-top:4px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 16px; }
+  .chip {
+    font-size:12px; font-weight:800; letter-spacing:.5px; padding:5px 11px;
+    border:2px solid var(--ink); border-radius:999px; background:var(--mustard);
+  }
+  .chip.alt { background:#bfe8ef; }
+  .playRow { display:flex; align-items:center; justify-content:space-between; }
+  .lanes { font-size:13px; font-weight:700; color:#7a6e5c; letter-spacing:1px; }
+  .playBtn {
+    font-family:'Titan One', sans-serif; font-size:18px; letter-spacing:1px;
+    color:var(--paper); background:var(--red); border:3px solid var(--ink);
+    border-radius:14px; padding:10px 22px; box-shadow:4px 4px 0 var(--ink);
+  }
+
+  .soon {
+    border:3px dashed #b8a888; border-radius:20px; padding:22px; text-align:center;
+    font-weight:800; color:#9a8b6e; transform:rotate(.7deg); font-size:15px; letter-spacing:.5px;
+  }
+  footer { margin-top:38px; font-size:13px; font-weight:700; color:#9a8b6e; text-align:center; }
 </style>
 </head>
 <body>
-  <h1>🕹️ Our Game Arcade</h1>
-  <div class="sub">Games we make together — tap one to play!</div>
-  <div class="games">
+  <header>
+    <div class="overline">FAMILY GAME NIGHT</div>
+    <h1>THE GAME<br><span class="accent">ARCADE</span></h1>
+    <div class="stickers"><span>🎳</span><span>🕹️</span><span>🏆</span></div>
+  </header>
+
+  <main>
     <a class="game" href="bowling/">
-      <img src="bowling/icon-180.png" alt="Bowling">
-      <div class="info">
-        <h2>🎳 Strike! Bowling</h2>
-        <p>Flick to bowl · 1-2 players · bumpers!</p>
+      <div class="gameTop">
+        <img src="bowling/icon-180.png" alt="Strike! Bowling icon">
+        <div>
+          <h2>STRIKE! BOWLING</h2>
+          <p>Flick to bowl. Knock 'em all down.</p>
+        </div>
       </div>
-      <div class="go">▶️</div>
+      <div class="chips">
+        <span class="chip">1–2 PLAYERS</span>
+        <span class="chip alt">BUMPERS MODE</span>
+        <span class="chip">TILT TO STEER</span>
+      </div>
+      <div class="playRow">
+        <span class="lanes">LANE 01 · OPEN</span>
+        <span class="playBtn">PLAY ▸</span>
+      </div>
     </a>
-  </div>
-  <div class="soon">✨ More games coming soon…</div>
+
+    <div class="soon">🚧 LANE 02 — NEXT GAME UNDER CONSTRUCTION 🚧</div>
+  </main>
+
+  <footer>Made together, one game at a time ★</footer>
 </body>
 </html>

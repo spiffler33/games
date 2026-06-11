@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Our Game Arcade 🕹️</title>
+<meta name="description" content="Games we made together">
+<meta name="theme-color" content="#1a103c">
+<link rel="icon" href="bowling/icon-180.png">
+<link rel="apple-touch-icon" href="bowling/icon-180.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { min-height:100%; }
+  body {
+    font-family: ui-rounded, -apple-system, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(120% 90% at 50% 0%, #3b2a7a 0%, #1a103c 60%, #120a2c 100%);
+    color:#fff; display:flex; flex-direction:column; align-items:center;
+    padding:max(40px, env(safe-area-inset-top)) 20px 40px; gap:26px;
+  }
+  h1 { font-size:clamp(32px, 9vw, 48px); text-align:center; text-shadow:0 4px 0 #0006; }
+  .sub { color:#bdb3e6; font-weight:600; text-align:center; }
+  .games { display:flex; flex-direction:column; gap:18px; width:min(420px, 100%); }
+  a.game {
+    display:flex; align-items:center; gap:16px; text-decoration:none; color:#fff;
+    background:#ffffff14; border:1px solid #ffffff22; border-radius:22px; padding:16px;
+    box-shadow:0 8px 24px #0006; transition:transform .1s;
+  }
+  a.game:active { transform:scale(.97); }
+  a.game img { width:72px; height:72px; border-radius:18px; }
+  a.game .info h2 { font-size:22px; }
+  a.game .info p { color:#bdb3e6; font-size:14px; font-weight:600; margin-top:2px; }
+  a.game .go { margin-left:auto; font-size:26px; }
+  .soon { opacity:.55; text-align:center; font-weight:700; color:#bdb3e6;
+          border:2px dashed #ffffff33; border-radius:22px; padding:18px; width:min(420px,100%); }
+</style>
+</head>
+<body>
+  <h1>🕹️ Our Game Arcade</h1>
+  <div class="sub">Games we make together — tap one to play!</div>
+  <div class="games">
+    <a class="game" href="bowling/">
+      <img src="bowling/icon-180.png" alt="Bowling">
+      <div class="info">
+        <h2>🎳 Strike! Bowling</h2>
+        <p>Flick to bowl · 1-2 players · bumpers!</p>
+      </div>
+      <div class="go">▶️</div>
+    </a>
+  </div>
+  <div class="soon">✨ More games coming soon…</div>
+</body>
+</html>
